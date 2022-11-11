@@ -1,5 +1,5 @@
 settings:
-  title: 'Vasconcellos status Page'
+  title: 'Vasconcellos Status Page'
   url: 'vasconcellos.workers.dev' # used for Slack messages
   logo: logo-192x192.png # image in ./public/ folder
   daysInHistogram: 90 # number of days you want to display in histogram
@@ -16,8 +16,41 @@ settings:
 
 monitors:
   - id: vasconcellos-casa
-    name: vasconcellos.casa
+    name: Homepage
     description: 'Família Vasconcellos - Homepage'
     url: 'https://vasconcellos.casa/'
     method: GET
+    linkable: false
+    expectStatus: 200
+
+  - id: vasconcellos-vaultwarden
+    name: Vaultwarden
+    description: 'Password manager'
+    url: 'https://vaultwarden.vasconcellos.casa/alive'
+    method: GET
+    linkable: false
+    expectStatus: 200
+
+  - id: vasconcellos-jellyfin
+    name: Jellyfin
+    description: 'The Free Software Media System'
+    url: 'https://jellyfin.vasconcellos.casa/health'
+    method: GET
+    linkable: false
+    expectStatus: 200
+
+  - id: vasconcellos-libreddit
+    name: Libreddit
+    description: 'Alternative private front-end to Reddit'
+    url: 'https://libreddit.vasconcellos.casa/settings'
+    method: GET
+    linkable: false
+    expectStatus: 200
+
+  - id: vasconcellos-nitter
+    name: Nitter
+    description: 'Alternative Twitter front-end '
+    url: 'https://nitter.vasconcellos.casa/'
+    method: GET
+    linkable: false
     expectStatus: 200
