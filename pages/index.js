@@ -51,14 +51,16 @@ export default function Index({ config, kvMonitors, kvMonitorsLastUpdate }) {
           function setTheme(theme) {
             document.documentElement.classList.remove("dark", "light")
             document.documentElement.classList.add(theme)
-            localStorage.theme = theme
+            try { localStorage.theme = theme } catch (e) {}
           }
           (() => {
+            let localStorage = null
+            try { localStorage = window.localStorage } catch (e) {}
             const query = window.matchMedia("(prefers-color-scheme: dark)")
             query.addListener(() => {
               setTheme(query.matches ? "dark" : "light")
             })
-            if (["dark", "light"].includes(localStorage.theme)) {
+            if (localStorage && ["dark", "light"].includes(localStorage.theme)) {
               setTheme(localStorage.theme)
             } else {
               setTheme(query.matches ? "dark" : "light")
