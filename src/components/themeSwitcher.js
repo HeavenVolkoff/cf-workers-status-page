@@ -35,7 +35,12 @@ const sunIcon = (
 )
 
 export default function ThemeSwitcher() {
-  const [darkmode, setDark] = useState(localStorage.getItem('theme') === 'dark')
+  let localStorage = null
+  try {
+    localStorage = window.localStorage
+  } catch (err) { }
+  
+  const [darkmode, setDark] = useState(localStorage ? localStorage.getItem('theme') === 'dark' : false)
 
   useEffect(() => {
     setTheme(darkmode ? 'dark' : 'light')
